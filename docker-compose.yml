@@ -1,0 +1,10 @@
+services:
+  gameProducer:
+    image: my-first-maven-docker.jar:1.0
+    volumes:
+      - test-volume:/game_volume
+    ports:
+      - '8080:8080'
+
+volumes:
+    test-volume:

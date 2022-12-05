@@ -4,6 +4,6 @@ ADD target/my-first-maven-docker.jar /app/
 
 ENTRYPOINT ["java", "-jar", "app/my-first-maven-docker.jar"]
 
-VOLUME /root/.m2
+VOLUME /game_volume
 
 EXPOSE 8080
