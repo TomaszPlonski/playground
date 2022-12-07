@@ -1,9 +1,13 @@
 package com.tplonski.gameProducer;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.*;
 
+import com.tplonski.model.Game;
+import com.tplonski.model.GameGenerator;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -21,6 +25,8 @@ public class GameProducer {
 
     private static final String BOOTSTRAP_SERVERS = ":9092";
     private static final String CLIENT_ID = "ex";
+
+    private static final String TOPIC = "game-test";
 
     private static Producer<String, String> producer;
 
@@ -40,8 +46,10 @@ public class GameProducer {
 
     @SuppressWarnings({ "boxing", "unused" })
     public static void send(String topic) {
-        final int number = new Random().nextInt(10);
-        ProducerRecord<String, String> data = new ProducerRecord<>(topic, "key" + number, "value string test------");
+        Game game = GameGenerator.generate();
+        String key = game.getFirstPlayer() + game.getSecondPlayer();
+
+        ProducerRecord<String, String> data = new ProducerRecord<>(TOPIC, key, "value string test------");
         try {
             RecordMetadata meta = producer.send(data).get();
             LOG.info("key = {}, value = {} => partition = {}, offset= {}", data.key(), data.value(), meta.partition(), meta.offset());

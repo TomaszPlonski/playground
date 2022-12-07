@@ -1,5 +1,8 @@
 package com.tplonski;
 
+import com.tplonski.model.Game;
+import com.tplonski.model.GameGenerator;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +14,10 @@ public class Main {
     }
 
         private static void myTask() {
-            System.out.println("Running");
+
+            Game game = GameGenerator.generate();
+            System.out.println(game.getFirstPlayer() + " - " + game.getSecondPlayer());
+            System.out.println(game);
         }
 
 }
