@@ -1,7 +1,8 @@
 package com.tplonski;
 
+import com.google.gson.Gson;
 import com.tplonski.model.Game;
-import com.tplonski.model.GameGenerator;
+import com.tplonski.business.GameGenerator;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,8 +17,9 @@ public class Main {
         private static void myTask() {
 
             Game game = GameGenerator.generate();
-            System.out.println(game.getFirstPlayer() + " - " + game.getSecondPlayer());
-            System.out.println(game);
+            System.out.println(new Gson().toJson(game.getPlayers()));
+            System.out.println( new Gson().toJson(game.getChoices()));
+
         }
 
 }

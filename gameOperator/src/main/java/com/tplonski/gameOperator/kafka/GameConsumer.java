@@ -1,5 +1,7 @@
 package com.tplonski.gameOperator.kafka;
 
+import com.google.gson.Gson;
+import com.tplonski.gameOperator.model.Players;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -7,16 +9,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class GameConsumerTest {
+public class GameConsumer {
 
-    @KafkaListener(topics = "string-test",
+    @KafkaListener(topics = "game-test",
             groupId = "first")
 
     // Method
     public void consume(ConsumerRecord<String, String> records) {
 
-        log.info("!!!! value = {}", records.value());
-        log.info("key = {}, value = {} => partition = {}, offset= {}", records.key(), records.value(), records.partition(), records.offset());
+        Players players = new Gson().fromJson(records.key(), Players.class);
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.tplonski.model;
+package com.tplonski.gameOperator.model;
 
 public class Game {
 

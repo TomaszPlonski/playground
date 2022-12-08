@@ -1,5 +1,10 @@
-package com.tplonski.model;
+package com.tplonski.business;
 
+
+import com.tplonski.model.Choices;
+import com.tplonski.model.Game;
+import com.tplonski.model.Players;
+import com.tplonski.model.RockPaperScissors;
 
 import java.security.SecureRandom;
 import java.util.*;
@@ -14,9 +19,9 @@ public class GameGenerator {
     public static Game generate(){
 
         List<String> activePlayers = getActivePlayers();
-        return new Game(activePlayers.get(0),activePlayers.get(1),randomChoice(RockPaperScissors.class),randomChoice(RockPaperScissors.class));
+        return new Game(new Players(activePlayers.get(0),activePlayers.get(1)),
+                new Choices(randomChoice(RockPaperScissors.class), randomChoice(RockPaperScissors.class)));
     }
-
 
     public static List<String> getActivePlayers(){
 

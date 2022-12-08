@@ -23,6 +23,8 @@ public class KafkaConfig {
     private static final String BOOTSTRAP_SERVERS = ":9092";
     private static final String CONSUMER_GROUP = "first";
 
+    private static final String OFFSET_RESET = "earliest";
+
     @Bean
     public ConsumerFactory<String, String> consumerFactory()
     {
@@ -35,6 +37,7 @@ public class KafkaConfig {
         config.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP );
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,OFFSET_RESET);
 
         return new DefaultKafkaConsumerFactory<>(config);
     }

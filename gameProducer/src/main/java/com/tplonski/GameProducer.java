@@ -1,20 +1,16 @@
-package com.tplonski.gameProducer;
+package com.tplonski;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 import java.util.concurrent.*;
 
+import com.google.gson.Gson;
 import com.tplonski.model.Game;
-import com.tplonski.model.GameGenerator;
+import com.tplonski.business.GameGenerator;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.common.serialization.IntegerSerializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,12 +43,13 @@ public class GameProducer {
     @SuppressWarnings({ "boxing", "unused" })
     public static void send(String topic) {
         Game game = GameGenerator.generate();
-        String key = game.getFirstPlayer() + game.getSecondPlayer();
+        String key = new Gson().toJson(game.getPlayers());
+        String value = new Gson().toJson(game.getChoices());
 
-        ProducerRecord<String, String> data = new ProducerRecord<>(TOPIC, key, "value string test------");
+        ProducerRecord<String, String> data = new ProducerRecord<>(TOPIC, key, value);
         try {
             RecordMetadata meta = producer.send(data).get();
-            LOG.info("key = {}, value = {} => partition = {}, offset= {}", data.key(), data.value(), meta.partition(), meta.offset());
+            LOG.info("key = {}, value = {}", data.key(), data.value());
         } catch (InterruptedException | ExecutionException e) {
             producer.flush();
         }
