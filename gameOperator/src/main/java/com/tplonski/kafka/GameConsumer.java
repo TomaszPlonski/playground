@@ -1,7 +1,7 @@
-package com.tplonski.gameOperator.kafka;
+package com.tplonski.kafka;
 
 import com.google.gson.Gson;
-import com.tplonski.gameOperator.model.Players;
+import com.tplonski.model.Players;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -18,6 +18,7 @@ public class GameConsumer {
     public void consume(ConsumerRecord<String, String> records) {
 
         Players players = new Gson().fromJson(records.key(), Players.class);
+        log.info(players.getFirstPlayer());
 
     }
 

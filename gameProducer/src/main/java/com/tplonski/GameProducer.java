@@ -45,6 +45,7 @@ public class GameProducer {
         Game game = GameGenerator.generate();
         String key = new Gson().toJson(game.getPlayers());
         String value = new Gson().toJson(game.getChoices());
+        System.out.println(key);
 
         ProducerRecord<String, String> data = new ProducerRecord<>(TOPIC, key, value);
         try {

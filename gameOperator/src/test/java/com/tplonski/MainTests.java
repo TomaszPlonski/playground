@@ -1,4 +1,4 @@
-package com.tplonski.gameOperator;
+package com.tplonski;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,9 +1,9 @@
 FROM openjdk:8
 
-ADD target/my-first-maven-docker.jar /app/
+ADD target/game-producer.jar /app/
 
-ENTRYPOINT ["java", "-jar", "app/my-first-maven-docker.jar"]
+ENTRYPOINT ["java", "-jar", "app/game-producer.jar"]
 
-VOLUME /game_volume
+#VOLUME /game_volume
 
-EXPOSE 8080
+EXPOSE 8090

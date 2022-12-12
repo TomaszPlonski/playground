@@ -1,4 +1,4 @@
-package com.tplonski.gameOperator.model;
+package com.tplonski.model;
 
 public enum RockPaperScissors{
 
