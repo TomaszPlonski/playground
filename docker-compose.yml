@@ -54,4 +54,22 @@ services:
     depends_on:
       - kafka
 
+#Databse: MySql
+  MySql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'games-db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:
 
