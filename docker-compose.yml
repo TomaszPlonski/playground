@@ -47,19 +47,20 @@ services:
 
 #Consumer container
   game-operator:
-    image: tplonski/game-operator:1.0
+    image: tplonski/game-operator:1.1
     hostname: game-operator
     ports:
       - 8091:8091
     depends_on:
       - kafka
+      - db
 
 #Databse: MySql
-  MySql:
+  db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'games-db'
+      MYSQL_DATABASE: 'games_db'
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
