@@ -1,9 +1,7 @@
-FROM openjdk:8
+FROM sapmachine:latest
 
-ADD target/game-producer.jar /app/
+ADD target/game-producer-jar-with-dependencies.jar app/
 
-ENTRYPOINT ["java", "-jar", "app/game-producer.jar"]
-
-#VOLUME /game_volume
+ENTRYPOINT ["java", "-jar", "app/game-producer-jar-with-dependencies.jar"]
 
 EXPOSE 8090

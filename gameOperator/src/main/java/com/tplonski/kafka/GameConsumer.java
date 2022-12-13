@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class GameConsumer {
 
-    @KafkaListener(topics = "game-test",
+    @KafkaListener(topics = "game",
             groupId = "first")
 
     // Method
