@@ -10,6 +10,4 @@ public class GameOperator {
 		SpringApplication.run(GameOperator.class, args);
 	}
 
-
-
 }

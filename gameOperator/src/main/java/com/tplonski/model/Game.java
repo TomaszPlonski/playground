@@ -1,22 +1,31 @@
 package com.tplonski.model;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@Table(name="games")
 public class Game {
 
-    private Players players;
+    @Id
+    @GeneratedValue
+    private Long gameId;
 
-    private Choices choices;
+    private String firstPlayer;
+
+    private String secondPlayer;
+
+    @Enumerated(EnumType.STRING)
+    private RockPaperScissors firstPlayerChoice;
+
+    @Enumerated(EnumType.STRING)
+    private RockPaperScissors secondPlayerChoice;
+
+    private Boolean isFirstPlayerAWinner;
 
 
-    public Game(Players players, Choices choices) {
-        this.players = players;
-        this.choices = choices;
-    }
 
-    public Players getPlayers() {
-        return players;
-    }
-
-    public Choices getChoices() {
-        return choices;
-    }
 }

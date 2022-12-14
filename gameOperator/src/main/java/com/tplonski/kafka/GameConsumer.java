@@ -1,7 +1,7 @@
 package com.tplonski.kafka;
 
-import com.google.gson.Gson;
-import com.tplonski.model.Players;
+import com.tplonski.mapper.ConsumeToGameMapperImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -9,7 +9,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class GameConsumer {
+
+    private final ConsumeToGameMapperImpl consumeToGameMapper;
 
     @KafkaListener(topics = "game",
             groupId = "first")
@@ -17,8 +20,9 @@ public class GameConsumer {
     // Method
     public void consume(ConsumerRecord<String, String> records) {
 
-        Players players = new Gson().fromJson(records.key(), Players.class);
-        log.info(players.getFirstPlayer());
+        log.info("I am working");
+
+        log.info(consumeToGameMapper.map(records.key(),records.value()).getFirstPlayerChoice().toString());
 
     }
 

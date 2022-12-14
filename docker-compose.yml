@@ -47,7 +47,7 @@ services:
 
 #Consumer container
   game-operator:
-    image: tplonski/game-operator:1.1
+    image: tplonski/game-operator:1.2
     hostname: game-operator
     ports:
       - 8091:8091
