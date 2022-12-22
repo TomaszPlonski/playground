@@ -38,7 +38,7 @@ services:
 
 #Producer container
   game-producer:
-    image: tplonski/game-producer:1.1
+    image: tplonski/game-producer
     hostname: game-producer
     ports:
       - 8090:8090
@@ -47,7 +47,7 @@ services:
 
 #Consumer container
   game-operator:
-    image: tplonski/game-operator:1.2
+    image: tplonski/game-operator
     hostname: game-operator
     ports:
       - 8080:8080
