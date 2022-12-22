@@ -26,6 +26,16 @@ public class Game {
 
     private Boolean isFirstPlayerAWinner;
 
-
+    public void setIsFirstPlayerAWinner(){
+        if(this.firstPlayerChoice.equals(this.secondPlayerChoice)){
+            this.isFirstPlayerAWinner = null;
+        } else if (this.firstPlayerChoice == RockPaperScissors.SCISSORS) {
+            this.isFirstPlayerAWinner = this.secondPlayerChoice == RockPaperScissors.PAPER;
+        } else if (this.firstPlayerChoice == RockPaperScissors.ROCK){
+            this.isFirstPlayerAWinner = this.secondPlayerChoice == RockPaperScissors.SCISSORS;
+        } else {
+            this.isFirstPlayerAWinner = this.secondPlayerChoice == RockPaperScissors.ROCK;
+        }
+    }
 
 }
